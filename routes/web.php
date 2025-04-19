@@ -5,7 +5,7 @@ use App\Http\Controllers\companycontroller;
 use App\Http\Controllers\coursecontroller;
 use App\Http\Controllers\Jobcontroller;
 use App\Http\Controllers\employercontroller;
-
+use App\Http\Controllers\registerController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -71,7 +71,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-
+Route::controller(registerController::class)->group(function () {
+    route::get("/auth.view", "view");
+});
 
 
 Route::get('/form', function () {
