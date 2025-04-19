@@ -71,8 +71,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+
+// Register
 Route::controller(registerController::class)->group(function () {
-    route::get("/auth.view", "view");
+    route::get("/register", "create");
 });
 
 

@@ -1,63 +1,53 @@
 <x-navigation>
-    <!DOCTYPE html>
-    <html lang="en" class="group" dir="ltr">
+    <x-slot:heading>Register</x-slot:heading>
+    <form method="POST" action="/register" class="flex justify-center items-center pb-10">
+        @csrf
+        <div class=" w-full md:w-2/4 mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Register</title>
-        <meta name="description" content="web development agency">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="csrf-token" content="YUCtNVCcqCgR5CLiVKgCJZbPniH2JTCRYZWfRuLz">
-        <link rel="shortcut icon" type="image/x-icon" href="uploads/3.png">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap">
-        <link rel="stylesheet" href="css/toastr.min.css">
-        <link rel="stylesheet" href="css/swiper-bundle.min.css">
-        <script src="js/lozad.min.js"></script>
-        <link rel="stylesheet" href="css/output.min.css">
-
-        <script src="js/flasher.min.js" type="text/javascript" nonce=""></script>
-        <script src="https://cdn.tailwindcss.com"></script>
-
-    </head>
-
-    <body>
-        <x-slot:heading> Register </x-slot:heading>
-        <p>TODO</p>
-        <form action="/jobs/store" method="POST" class="max-w-lg mx-auto bg-white p-6 rounded-2xl shadow-md space-y-6">
-            @csrf
-
-            <h2 class="text-2xl font-bold text-gray-800 text-center">Create New Job</h2>
-
+            <!-- Name -->
             <div>
-                <x-form-label for="title">Title</x-form-label>
-                <x-form-input name="title" value="{{ old('title') }}" />
-                <x-form-error name="title" />
+                <x-form-label for="first_name">First Name</x-form-label>
+                <x-form-input name="first_name" value="{{ old('first_name') }}" autocomplete="first_name" />
+                <x-form-error name="first_name" />
             </div>
 
-            <div>
-                <x-form-label for="sallary">Sallary</x-form-label>
-                <x-form-input name="sallary" value="{{ old('sallary') }}" />
-                <x-form-error name="sallary" />
+            <div class="mt-4">
+                <x-form-label for="last_name">Last Name</x-form-label>
+                <x-form-input name="last_name" value="{{ old('last_name') }}" autocomplete="last_name" />
+                <x-form-error name="last_name" />
             </div>
 
-
-            <div class="text-center">
-                <x-form-button>Post Job</x-form-button>
+            <!-- Email Address -->
+            <div class="mt-4">
+                <x-form-label for="email">Email</x-form-label>
+                <x-form-input name="email" value="{{ old('email') }}" autocomplete="email" />
+                <x-form-error name="email" />
             </div>
-        </form>
 
+            <!-- Password -->
+            <div class="mt-4">
+                <x-form-label for="password">Password</x-form-label>
+                <x-form-input name="password" value="{{ old('password') }}" autocomplete="password" />
+                <x-form-error name="password" />
+            </div>
 
+            <!-- Confirm Password -->
+            <div class="mt-4">
+                <x-form-label for="confirm_password">Confirm Password</x-form-label>
+                <x-form-input name="confirm_password" value="{{ old('confirm_password') }}"
+                    autocomplete="confirm_password" />
+                <x-form-error name="confirm_password" />
+            </div>
 
+            <div class="flex items-center justify-end mt-4 space-x-2">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    href="/login">
+                    Already registered? </a>
 
-    </body>
-
-    </html>
-
+                <x-form-button type="submit">
+                    Register
+                </x-form-button>
+            </div>
+        </div>
+    </form>
 </x-navigation>
