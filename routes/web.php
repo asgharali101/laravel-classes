@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\blogcontroller;
 use App\Http\Controllers\companycontroller;
 use App\Http\Controllers\coursecontroller;
 use App\Http\Controllers\Jobcontroller;
 use App\Http\Controllers\employercontroller;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\sessionController;
+use App\Http\Controllers\usercontroller;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -39,7 +42,7 @@ Route::get('/company/edit/{company}', [companycontroller::class, "edit"]);
 Route::patch('/company/update/{company}', [companycontroller::class, "update"]);
 Route::delete('/company/delete/{company}', [companycontroller::class, "delete"]);
 
-
+// course
 Route::get('/courses', [coursecontroller::class, "index"]);
 Route::get('/course/{course}', [coursecontroller::class, "show"]);
 Route::get('/courses/create', [coursecontroller::class, "create"]);
@@ -48,7 +51,7 @@ Route::get('/course/edit/{course}', [coursecontroller::class, "edit"]);
 Route::patch('/courses/update/{course}', [coursecontroller::class, "update"]);
 Route::delete('/courses/delete/{course}', [coursecontroller::class, "delete"]);
 
-
+// employers
 Route::get('/employers', [employercontroller::class, "index"]);
 Route::get('/employer/{employer}', [employercontroller::class, "show"]);
 Route::get('/employers/create', [employercontroller::class, "create"]);
@@ -75,34 +78,13 @@ Route::get('/', function () {
 // Register
 Route::controller(registerController::class)->group(function () {
     route::get("/register", "create");
+    route::post("/register", "store");
 });
 
-
-Route::get('/form', function () {
-    return view('form');
+route::controller(usercontroller::class)->group(function () {
+    route::get("/users", "index");
 });
-
-Route::post('/form', function () {
-    $validation = request()->validate([
-        "name" => "required|min:5|max:20",
-        "email" => "required|email|min:10|max:30",
-        "password" => "required|min:8|max:30",
-        "conform_password" => "required|same:password",
-        "profile_image" => "required|mimes:png,jpg,jpeg|image|max:2048",
-    ]);
-
-    $path = request()->file("profile_image")->store("images", "public");
-    // dd($validation["name"]);
-    $data = [
-        ...request()->all(),
-        "profile_image" => $path,
-    ];
-
-    session()->put("user_form", $data);
-
-
-
-    // dd(session("user_form.profile_image"));
-    return view('form', compact('alldata'));
-    // return redirect("/form");
+// login
+route::controller(sessionController::class)->group(function () {
+    Route::get('/login', "create");
 });

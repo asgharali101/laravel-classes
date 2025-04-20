@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="hidden md:flex items-center space-x-4">
-                            <button
+                            {{-- <button
                                 class="p-2 rounded-full text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white">
                                 <span class="sr-only">View notifications</span>
                                 <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -52,14 +52,19 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
                                 </svg>
-                            </button>
-                            <div class="relactive">
+                            </button> --}}
+                            <!-- Login & Register links -->
+                            @guest
+                                <x-nav-link href="login" :active="request()->is('login')">Login</x-nav-link>
+                                <x-nav-link href="register" :active="request()->is('register')">register</x-nav-link>
+                            @endguest
+                            {{-- <div class="relactive">
                                 <button class="flex items-center text-white focus:outline-none">
                                     <img class="size-10 rounded-full"
                                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                         alt="User">
                                 </button>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
