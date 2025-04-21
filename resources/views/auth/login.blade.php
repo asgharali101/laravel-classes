@@ -1,6 +1,6 @@
 <x-navigation>
     <x-slot:heading>Register</x-slot:heading>
-    <form method="POST" action="/register/store" class="flex justify-center items-center pb-10">
+    <form method="POST" action="/login" class="flex justify-center items-center pb-10">
         @csrf
         <div class=" w-full md:w-2/3 lg:w-2/4 mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
 
