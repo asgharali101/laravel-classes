@@ -19,8 +19,16 @@ Route::get('/', function () {
 });
 
 // resources Method
-route::resource("/jobs", Jobcontroller::class);
-
+// route::resource("/jobs", Jobcontroller::class);
+route::controller(jobcontroller::class)->group(function () {
+    Route::get('/jobs',  "index");
+    Route::get('/job/{job}', "show");
+    Route::get('/jobs/create', "create");
+    Route::post('/jobs/store',  "store");
+    Route::get('/jobs/edit/{job}', "edit");
+    Route::patch('/jobs/update/{job}', "update");
+    Route::delete('/jobs/delete/{job}', "delete");
+});
 
 // controller/Group Method
 route::controller(blogcontroller::class)->group(function () {
@@ -60,6 +68,10 @@ Route::get('/employer/edit/{employer}', [employercontroller::class, "edit"]);
 Route::patch('/employer/update/{employer}', [employercontroller::class, "update"]);
 Route::delete('/employer/delete/{employer}', [employercontroller::class, "delete"]);
 
+// user
+route::controller(usercontroller::class)->group(function () {
+    route::get("/users", "index");
+});
 
 
 
@@ -74,17 +86,18 @@ Route::get('/', function () {
     return view('home');
 });
 
-
-// Register
 Route::controller(registerController::class)->group(function () {
     route::get("/register", "create");
     route::post("/register", "store");
 });
-
-route::controller(usercontroller::class)->group(function () {
-    route::get("/users", "index");
+Route::controller(sessionController::class)->group(function () {
+    route::get("/login", "create");
+    route::post("/login", "store");
 });
-// login
-route::controller(sessionController::class)->group(function () {
-    Route::get('/login', "create");
+
+route::get("/logout", [sessionController::class], "destroy");
+
+
+Route::get('/', function () {
+    return view('home');
 });

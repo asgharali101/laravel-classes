@@ -9,14 +9,15 @@
             <!-- Email Address -->
             <div class="mt-4">
                 <x-form-label for="email">Email</x-form-label>
-                <x-form-input name="email" value="{{ old('email') }}" autocomplete="email" required />
+                <x-form-input type="email" name="email" :value="old('email')" autocomplete="email" required />
                 <x-form-error name="email" />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
                 <x-form-label for="password">Password</x-form-label>
-                <x-form-input name="password" value="{{ old('password') }}" autocomplete="password" required />
+                <x-form-input type="password" name="password" value="{{ old('password') }}" autocomplete="password"
+                    required />
                 <x-form-error name="password" />
             </div>
 
