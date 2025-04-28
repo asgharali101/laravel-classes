@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\company;
 use Illuminate\Auth\Events\Validated;
-
+use Illuminate\Support\Facades\Auth;
 
 class companycontroller extends Controller
 {
@@ -48,6 +48,14 @@ class companycontroller extends Controller
 
     public function edit(company $company)
     {
+        if (Auth::guest()) {
+            return redirect("/login");
+        }
+
+        if ($company->employer->user_id !== (Auth::user())) {
+            return redirect("/companies");
+        }
+
         return view('companies.edit', [
             "company" => $company,
         ]);

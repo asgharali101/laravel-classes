@@ -15,16 +15,19 @@ class sessionController extends Controller
     public function store()
     {
         $validated = Request()->validate([
-            "email" => "required|email|unique:user,email",
+            "email" => "required|email|unique:users,email",
             "password" => "required",
         ]);
+
         if (! Auth::attempt($validated)) {
             throw ValidationException::withMessages([
                 "email" => "Sorry, your credentails do not match",
             ]);
         }
 
+
         request()->session()->regenerate();
+
         return redirect("/");
         return view("auth.login");
     }

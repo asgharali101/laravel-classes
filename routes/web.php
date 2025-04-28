@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\blogcontroller;
 use App\Http\Controllers\companycontroller;
 use App\Http\Controllers\coursecontroller;

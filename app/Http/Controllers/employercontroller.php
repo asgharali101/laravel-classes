@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Auth\Events\Validated;
 
 use App\Models\employers;
+use Illuminate\Support\Facades\Auth;
 
 class employercontroller extends Controller
 {
@@ -48,6 +49,14 @@ class employercontroller extends Controller
 
     public function edit(employers $employer)
     {
+        if (Auth::guest()) {
+            redirect("/login");
+        }
+
+        if ($employer->user_id !== (Auth::user())) {
+            abort(403);
+        }
+
         return view('employers.edit', [
             "employer" => $employer,
         ]);

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\course;
 use Illuminate\Auth\Events\Validated;
-
+use Illuminate\Support\Facades\Auth;
 
 class coursecontroller extends Controller
 {
@@ -53,6 +53,10 @@ class coursecontroller extends Controller
 
     public function edit(course $course)
     {
+        if (Auth::guest()) {
+            return  redirect("/login");
+        }
+
         return view('courses.edit', [
             "course" => $course,
         ]);
