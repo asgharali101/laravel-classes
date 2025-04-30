@@ -1,4 +1,4 @@
-<x-navigation>
+<x-sidebar>
     <!DOCTYPE html>
     <html lang="en" class="group" dir="ltr">
 
@@ -91,4 +91,4 @@
 
     </html>
 
-</x-navigation>
+    </x-navigation>

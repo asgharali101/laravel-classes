@@ -73,13 +73,15 @@ route::controller(usercontroller::class)->group(function () {
 });
 
 
-
+Route::get('/demo', function () {
+    return view('demo');
+});
 
 Route::get('/contact', function () {
     return view('contact');
 });
 Route::get('/about', function () {
-    return view('contact');
+    return view('about');
 });
 Route::get('/', function () {
     return view('home');

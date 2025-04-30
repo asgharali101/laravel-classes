@@ -37,11 +37,13 @@ class companycontroller extends Controller
             "name" => "required|min:10|max:30",
             "description" => "required|min:10|max:300",
         ]);
+
         company::create([
             'name' => $companies["name"],
             'description' => $companies["description"],
             'employers_id' => 1,
         ]);
+
         return redirect("companies");
         return view('companies.create');
     }
